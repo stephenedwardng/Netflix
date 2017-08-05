@@ -1,5 +1,3 @@
-// netflix
-
 var app = function(){
   var url = "https://netflixroulette.net/api/api.php?actor=Chuck%20Norris";
   makeRequest(url, requestComplete);
@@ -33,7 +31,6 @@ var populateQuote = function(quote){
   var quoteHeader = document.createElement('h3');
   quoteHeader.innerText = quote.value.joke;
   quoteDiv.appendChild(quoteHeader);
-
 }
 
 var populateSelect = function(films){
