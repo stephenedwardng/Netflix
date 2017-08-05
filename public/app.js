@@ -104,7 +104,8 @@ var BarChart = function(){
   var chart = new Highcharts.Chart({
     chart: {
       type: 'column',
-      renderTo: container
+      renderTo: container,
+      backgroundColor: 'transparent'
     },
     title: {
       text: "Film Ratings"
@@ -112,11 +113,11 @@ var BarChart = function(){
     colors: ["firebrick"], 
     series: [{
       name: "Films",
-      // data: ratingsAsCategories
+      //data: ratingsAsCategories
       data: [4.0, 3.9, 3.3, 3.1, 3.8, 3.0, 3.2, 3.1]
     }],
     xAxis: {
-      // categories: showTitlesAsCategories
+      //categories: showTitlesAsCategories
       categories: ["Return of the Dragon", "The Expendables 2", "A Force of One", "The Octagon", "Films of Fury", "Good Guys Wear Black", "The Delta Force", "Top Dog"]
     },
     yAxis: {
