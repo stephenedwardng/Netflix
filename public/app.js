@@ -17,6 +17,7 @@ var requestComplete = function(){
   var jsonString = this.responseText;
   var films = JSON.parse(jsonString);
   populateSelect(films);
+  populateChart(films);
 }
 
 var quoteRequestComplete = function(){
@@ -81,4 +82,51 @@ var populateSelect = function(films){
   });
 }
 
+var showTitlesAsCategories = [];
+var ratingsAsCategories = [];
+
+var populateChart = function(films) {
+  films.forEach(function(film, index){
+    showTitlesAsCategories.push(film.show_title);
+    ratingsAsCategories.push(film.rating);
+  })
+  console.log("In populateChart", showTitlesAsCategories);
+  return showTitlesAsCategories;
+}
+
+console.log("In global scope", showTitlesAsCategories);
+
+var BarChart = function(){
+
+  var container = document.getElementById('bar-chart');
+  console.log("In BarChart", showTitlesAsCategories);
+
+  var chart = new Highcharts.Chart({
+    chart: {
+      type: 'column',
+      renderTo: container
+    },
+    title: {
+      text: "Film Ratings"
+    },
+    colors: ["firebrick"], 
+    series: [{
+      name: "Films",
+      // data: ratingsAsCategories
+      data: [4.0, 3.9, 3.3, 3.1, 3.8, 3.0, 3.2, 3.1]
+    }],
+    xAxis: {
+      // categories: showTitlesAsCategories
+      categories: ["Return of the Dragon", "The Expendables 2", "A Force of One", "The Octagon", "Films of Fury", "Good Guys Wear Black", "The Delta Force", "Top Dog"]
+    },
+    yAxis: {
+      title: {text: "Ratings"}
+    }
+  })
+}
+
 window.addEventListener('load', app);
+
+window.addEventListener('load', function(){
+  new BarChart();
+})
