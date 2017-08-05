@@ -56,6 +56,13 @@ var populateSelect = function(films){
     year.innerText = film.release_year;
     ul.appendChild(year);
 
+    var summary = document.createElement('p');
+    summary.innerText = film.summary;
+    ul.appendChild(summary);
+
+    var runtime = document.createElement('p');
+    runtime.innerText = film.runtime;
+    ul.appendChild(runtime);
 
   });
 }
