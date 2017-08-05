@@ -1,7 +1,7 @@
 body {
-  background-color: white;
+  background-color: black;
   font-family: verdana;
-  color: black;
+  color: white;
 }
 
 h1 {
@@ -10,4 +10,8 @@ h1 {
 
 h2 {
   color: firebrick;
+}
+
+p {
+  color: white;
 }

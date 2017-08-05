@@ -1,8 +1,10 @@
 // netflix
 
 var app = function(){
-  var url = "https://netflixroulette.net/api/api.php?actor=Arnold%20Schwarzenegger";
+  var url = "https://netflixroulette.net/api/api.php?actor=Chuck%20Norris";
   makeRequest(url, requestComplete);
+  var quoteUrl = "http://api.icndb.com/jokes/random";
+  makeRequest(quoteUrl, quoteRequestComplete);
 }
 
 var makeRequest = function(url, callback){
@@ -17,6 +19,21 @@ var requestComplete = function(){
   var jsonString = this.responseText;
   var films = JSON.parse(jsonString);
   populateSelect(films);
+}
+
+var quoteRequestComplete = function(){
+  if(this.status != 200) return;
+  var jsonString = this.responseText;
+  var quote = JSON.parse(jsonString);
+  populateQuote(quote);
+}
+
+var populateQuote = function(quote){
+  var quoteDiv = document.getElementById('quote-div');
+  var quoteHeader = document.createElement('h3');
+  quoteHeader.innerText = quote.value.joke;
+  quoteDiv.appendChild(quoteHeader);
+
 }
 
 var populateSelect = function(films){
