@@ -57,9 +57,9 @@ var populateSelect = function(films){
       ul.removeChild(ul.firstChild);
     }
 
-    var li = document.createElement('h2');
-    li.innerText = film.show_title;
-    ul.appendChild(li);
+    var h2Li = document.createElement('h2');
+    h2Li.innerText = film.show_title;
+    ul.appendChild(h2Li);
 
     var urlLi = document.createElement('p');
     var image = new Image(200);
@@ -88,18 +88,14 @@ var ratingsAsCategories = [];
 var populateChart = function(films) {
   films.forEach(function(film, index){
     showTitlesAsCategories.push(film.show_title);
-    ratingsAsCategories.push(film.rating);
+    ratingsAsCategories.push(parseFloat(film.rating));
   })
-  console.log("In populateChart", showTitlesAsCategories);
-  return showTitlesAsCategories;
+  new BarChart();
 }
-
-console.log("In global scope", showTitlesAsCategories);
 
 var BarChart = function(){
 
   var container = document.getElementById('bar-chart');
-  console.log("In BarChart", showTitlesAsCategories);
 
   var chart = new Highcharts.Chart({
     chart: {
@@ -113,12 +109,10 @@ var BarChart = function(){
     colors: ["firebrick"], 
     series: [{
       name: "Films",
-      //data: ratingsAsCategories
-      data: [4.0, 3.9, 3.3, 3.1, 3.8, 3.0, 3.2, 3.1]
+      data: ratingsAsCategories
     }],
     xAxis: {
-      //categories: showTitlesAsCategories
-      categories: ["Return of the Dragon", "The Expendables 2", "A Force of One", "The Octagon", "Films of Fury", "Good Guys Wear Black", "The Delta Force", "Top Dog"]
+      categories: showTitlesAsCategories
     },
     yAxis: {
       title: {text: "Ratings"}
@@ -127,7 +121,3 @@ var BarChart = function(){
 }
 
 window.addEventListener('load', app);
-
-window.addEventListener('load', function(){
-  new BarChart();
-})
